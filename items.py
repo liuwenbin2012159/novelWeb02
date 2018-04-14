@@ -13,6 +13,15 @@ class NovelwebItem(scrapy.Item):
     name = scrapy.Field()
 
     print("hello world!")
+    print("hello world!")
+    print("hello world!")
+    print("hello world!")
+    print("hello world!")
+    print("hello world!")
+    print("hello world!")
+    print("hello world!")
+    print("hello world!")
+    print("hello world!")
 
 
 print("hello world!")

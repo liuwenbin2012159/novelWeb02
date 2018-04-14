@@ -26,7 +26,10 @@ class NovelwebItem(scrapy.Item):
     print("hello python!")
     print("hello python!")
     print("hello python!")
-    print("hello python!")
+    print("hello java!")
+    print("hello java!")
+    print("hello java!")
+    print("hello java!")
 
 
 

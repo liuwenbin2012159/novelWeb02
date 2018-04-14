@@ -13,6 +13,4 @@ class NovelwebItem(scrapy.Item):
     name = scrapy.Field()
 
 
-
-
-    pass
+pass

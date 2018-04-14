@@ -11,36 +11,4 @@ import scrapy
 class NovelwebItem(scrapy.Item):
     # define the fields for your item here like:
     name = scrapy.Field()
-
-    print("hello world!")
-    print("hello world!")
-    print("hello world!")
-    print("hello world!")
-    print("hello world!")
-    print("hello world!")
-    print("hello world!")
-    print("hello world!")
-    print("hello world!")
-    print("hello world!")
-    print("hello python!")
-    print("hello python!")
-    print("hello python!")
-    print("hello python!")
-    print("hello java!")
-    print("hello java!")
-    print("hello java!")
-    print("hello java!")
-    print("hello java!")
-    print("hello hehee!")
-    print("hello java!")
-    print("hello hehee!")
-    print("hello hehee!")
-
-
-
-
-
-print("hello world!")
-print("hello worluuuuuuuuuuuuuuuuuuuuuud!")
-print("hello world!")
 pass

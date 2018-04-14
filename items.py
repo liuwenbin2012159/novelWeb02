@@ -41,6 +41,6 @@ class NovelwebItem(scrapy.Item):
 
 
 print("hello world!")
-print("hello world!")
+print("hello worluuuuuuuuuuuuuuuuuuuuuud!")
 print("hello world!")
 pass

@@ -23,12 +23,12 @@ class MongoDBPipleline(object):
     def process_item(self, item, spider):
         if isinstance(item, NovelInfoItem):
             try:
-                self.Information.insert(dict(item))
+                self.novelInfo.insert(dict(item))
             except Exception:
                 pass
         elif isinstance(item, NoveContentItem):
             try:
-                self.Tweets.insert(dict(item))
+                self.novelContent.insert(dict(item))
             except Exception:
                 pass
         return item

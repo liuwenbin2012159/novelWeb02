@@ -9,7 +9,7 @@ import scrapy
 
 
 class NovelwebItem(scrapy.Item):
-    # define the fields for your item here like:
+    # define the fieldssssssds for your item here like:
     name = scrapy.Field()
 pass
 

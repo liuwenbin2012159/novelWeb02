@@ -21,6 +21,7 @@ class NovelInfoItem(Item):
     # visitCount = Field()  # visit
     novelName= Field()  # novelName
     author = Field()  # author
+    novelTitle = Field()  # novelTitle
     type= Field()  # noveltype
     updateStatus= Field()  # updateStatus
     novelDesc= Field()  # novelDesc

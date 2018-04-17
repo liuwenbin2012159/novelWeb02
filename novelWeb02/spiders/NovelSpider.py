@@ -32,26 +32,32 @@ class NovelSpider(RedisSpider):
         self.url= "http://www.kushubao.com/1000/"
 
     def parse(self, response):
-        print("relust==="+str(response))
         selector = Selector(response)
         novelInfoItem = NovelInfoItem();
         # ID = re.findall('weibo\.cn/(\d+)', response.url)[0]
-        novelInfoItem['novelTitle']= selector.xpath('//*[@class="entry-single"]/h1')
-        novelInfoItem['author']= selector.xpath('//*[@class="des"]/p/span')[0]
-        novelInfoItem['novelStatus']= selector.xpath('//*[@class="des"]/p/span')[0]
-        novelInfoItem['lasterChapter']= selector.xpath('//*[@class="des"]/p/a')
-        novelInfoItem['novelStatus']= selector.xpath('//*[@class="des"]/p/a')
-        novelInfoItem['lasterChapterName']= selector.xpath('//*[@class="des"]/p/a')
-        novelInfoItem['lasterChapterURL']= selector.xpath('//*[@class="des"]/p/a/@href')
-        novelInfoItem['type']= selector.xpath('//*[@class="des"]/p')[1]+selector.xpath('//*[@class="des"]/p')[2]+selector.xpath('//*[@class="des"]/p')[3]
-        novelInfoItem['novelDesc'] = selector.xpath('//*[@class="des"]/p')[4]
+        novelInfoItem['novelTitle']= selector.xpath('//div[@class="entry-single"]/h1/text()').extract()[0]
+        novelInfoItem['author']= str(selector.xpath('//div[@class="des"]/p/span/b[1]/following::text()[1]')[0].extract()).replace('\xa0','').replace(' ','');
+        novelInfoItem['updateStatus']= str(selector.xpath('//div[@class="des"]/p/span/b[2]/following::text()[1]')[0].extract()).replace('\xa0','').replace(' ','');
+        novelInfoItem['lasterChapterName']= selector.xpath('//div[@class="des"]/p/a/text()').extract()[0]
+        novelInfoItem['lasterChapterURL']= str(selector.xpath('//div[@class="des"]/p/a/@href').extract()).replace('\\r','').replace('\\n','')[0]
+        novelInfoItem['type']= str(selector.xpath('//div[@class="des"]/p[2]/text()').extract()).replace('\\','')[0]
+        print( novelInfoItem['lasterChapterURL'])
+        novelInfoItem['novelDesc'] = selector.xpath('//div[@class="des"]/p[5]/text()').extract()[0]
         yield novelInfoItem
-        chapterURLLiAry = selector.xpath('//*[@id="xslist"]/ul/li')
-        for i in chapterURLLiAry:
-            chapterURL = i.xpath('/a/@href')
-            chapterTitle = i.xpath('/a/@title')
-            yield Request(url=chapterURL, callback=self.parse2)
-    def parse2(self, response):
+        chapterURLLiAry = selector.xpath('//div[@id="xslist"]/ul/li')
+        chapterURL = selector.xpath('//div[@id="xslist"]/ul/li/a/@href').extract()
+        for i in chapterURL:
+            joinURL = ''.join(str(i).replace('\\r', '').replace('\\n', '').split())
+            print("joinURL================"+joinURL)
+            yield Request(url=joinURL, callback=self.parseContent, dont_filter=True)
+    def parseContent(self, response):
+        selector = Selector(response)
+        nove_content_item = NoveContentItem()
+        nove_content_item['chapterContent'] = ''.join(selector.xpath('//div[@id="booktext"]/text()').extract())
+        print()
+
+
+
         pass
 
 

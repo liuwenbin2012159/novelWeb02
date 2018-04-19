@@ -4,6 +4,9 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+from datetime import datetime
+from time import time
+
 import pymongo as pymongo
 from novelWeb02.items import *
 
@@ -20,15 +23,20 @@ class MongoDBPipleline(object):
         self.novelDesc = db["novel_desc"]
         self.novelContent = db["novel_content"]
 
+
     def process_item(self, item, spider):
+        item._values['status'] = 1
+        item._values['createTime'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S');
         if isinstance(item, NovelInfoItem):
             try:
-                self.novelInfo.insert(dict(item))
+                novelID = self.novelInfo.insert(dict(item))
+                item._values['novelID'] = novelID
+
             except Exception:
                 pass
         elif isinstance(item, NoveContentItem):
             try:
-                self.novelContent.insert(dict(item))
+                chapterID = self.novelContent.insert(dict(item))
             except Exception:
                 pass
         return item

@@ -33,3 +33,5 @@ class NoveContentItem(Item):
     chapterURL= Field()  # chapterURL
     chapterContent= Field()  # chapterContent
     chapterName= Field()  # chapterName
+    novelID=Field()
+    chapterID = Field()

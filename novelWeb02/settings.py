@@ -16,3 +16,8 @@ SCHEDULER = 'scrapy_redis.scheduler.Scheduler'
 DOWNLOAD_DELAY = 2
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+LOG_LEVEL = 'INFO'  #
+LOG_FILE  ="novelSpider.log"
+LOG_ENABLED : True
+LOG_ENCODING : 'utf-8'
+LOG_STDOUT : True

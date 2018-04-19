@@ -9,7 +9,7 @@ from novelWeb02.items import *
 
 class NovelSpider(RedisSpider):
     start_urls = []
-    logging.getLogger("requests").setLevel(logging.WARNING)  # 将requests的日志级别设成WARNING
+    logging.getLogger("requests").setLevel(logging.WARNING)  #
 
     name = "novelSpider"
     # allowed_domains = ["dmoz.org"]
